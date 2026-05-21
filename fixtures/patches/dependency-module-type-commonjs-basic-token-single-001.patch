@@ -1,0 +1,16 @@
+diff --git a/package.json b/package.json
+index 6b0b4f6..34d1ce8 100644
+--- a/package.json
++++ b/package.json
+@@ -1,8 +1,8 @@
+ {
+   "name": "dependency-module-type-commonjs-basic",
+   "version": "1.0.0",
+-  "type": "commonjs",
++  "type": "module",
+   "scripts": {
+     "test": "node --test"
+   }
+-}
++}
+\ No newline at end of file

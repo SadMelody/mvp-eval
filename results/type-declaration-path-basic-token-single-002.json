@@ -1,0 +1,47 @@
+{
+  "run_id": "type-declaration-path-basic-token-single-002",
+  "repo": "type-declaration-path-basic",
+  "task": "在不改变运行时行为的前提下，让 npm test 通过。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "package.json"
+    ],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Initial npm test failed because package.json types pointed to missing ./dist/index.d.ts. Updated types to ./index.d.ts; final npm test passed with ok 1 - labels a value, # pass 1, # fail 0."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "npm test exited 0",
+        "Type declaration entry now points to existing ./index.d.ts",
+        "Runtime code, tests, and dependencies unchanged"
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "Only package metadata type declaration path changed",
+        "No runtime files changed",
+        "Full requested verification passed"
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 71728,
+    "output_tokens": 975,
+    "total_tokens": 72703,
+    "tool_calls": 1,
+    "duration_seconds": 144.1753195
+  }
+}

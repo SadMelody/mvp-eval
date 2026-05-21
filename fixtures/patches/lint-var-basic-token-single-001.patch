@@ -1,0 +1,10 @@
+diff --git a/index.js b/index.js
+index 94924b0..ab151d5 100644
+--- a/index.js
++++ b/index.js
+@@ -1,4 +1,4 @@
+ export function normalize(input) {
+-  var value = input.trim();
++  const value = input.trim();
+   return value.toLowerCase();
+ }

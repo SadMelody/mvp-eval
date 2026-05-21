@@ -1,0 +1,59 @@
+{
+  "run_id": "script-path-config-token-001",
+  "repo": "script-path-config",
+  "task": "在不改变运行时行为的前提下，让 npm test 通过。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "package.json"
+    ],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "failed",
+        "summary": "Initial run failed because package script targeted missing path tests/*.test.js."
+      },
+      {
+        "command": "npm test",
+        "status": "failed",
+        "summary": "Intermediate run still failed because node --test on Windows did not resolve test/*.test.js as a glob."
+      },
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Final run passed with node --test test/basic.test.js: 1 test, 1 pass."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Read project structure, package scripts, test file, and git status before editing.",
+        "Updated only package.json test script path; runtime and test files unchanged.",
+        "Final npm test passed."
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "Configuration-only change to npm test script.",
+        "No runtime behavior changed.",
+        "Full npm test verification passed."
+      ],
+      "remaining_risks": [
+        "No separate lint or typecheck scripts exist in package.json."
+      ]
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 295983,
+    "output_tokens": 2642,
+    "total_tokens": 298625,
+    "tool_calls": 5,
+    "duration_seconds": 219.1224687
+  }
+}

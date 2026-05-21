@@ -1,0 +1,52 @@
+{
+  "run_id": "escape-string-regexp-token-strict-001",
+  "repo": "escape-string-regexp",
+  "task": "在不改变运行时行为的前提下，让 npm test 通过。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "package.json"
+    ],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "failed",
+        "summary": "初次完整验证失败：xo 和 ava 通过，tsd 失败；失败来自外部共享 node_modules 中 ambient @types/node 25 声明与当前 TypeScript/tsd 工具链不兼容。"
+      },
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "修复后完整验证通过：xo、ava、tsd 均通过，ava 显示 3 tests passed。"
+      }
+    ],
+    "verification": {
+      "passed": [
+        "读取了项目结构、package scripts、测试相关文件和 git 状态。",
+        "通过 package.json 的 tsd compilerOptions.types=[] 限制 ambient @types 自动加载，未修改运行时代码。",
+        "最终 npm test 完整通过。"
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "只修改 tsd 测试配置。",
+        "运行时文件、测试文件、依赖均未修改。",
+        "完整 npm test 已通过。"
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 214651,
+    "output_tokens": 2195,
+    "total_tokens": 216846,
+    "tool_calls": 3,
+    "duration_seconds": 237.2401232
+  }
+}

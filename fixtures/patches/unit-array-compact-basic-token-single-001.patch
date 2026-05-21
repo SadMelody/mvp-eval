@@ -1,0 +1,9 @@
+diff --git a/index.js b/index.js
+index a21cb11..33dd6c1 100644
+--- a/index.js
++++ b/index.js
+@@ -1,3 +1,3 @@
+ export function compact(values) {
+-  return values;
++  return values.filter(value => value != null);
+ }

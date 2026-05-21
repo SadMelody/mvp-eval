@@ -1,0 +1,12 @@
+diff --git a/package.json b/package.json
+index 433cdfe..0a97f57 100644
+--- a/package.json
++++ b/package.json
+@@ -4,6 +4,6 @@
+   "private": true,
+   "type": "module",
+   "scripts": {
+-    "test": "node --test specs/*.test.js"
++    "test": "node --test test/basic.test.js"
+   }
+ }

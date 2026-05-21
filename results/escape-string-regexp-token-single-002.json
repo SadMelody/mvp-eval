@@ -1,0 +1,51 @@
+{
+  "run_id": "escape-string-regexp-token-single-002",
+  "repo": "escape-string-regexp",
+  "task": "在不改变运行时行为的前提下，让 npm test 通过。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "package.json"
+    ],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "failed",
+        "summary": "Initial run failed after xo and ava passed; tsd picked up incompatible @types/node declarations from node_modules, producing TypeScript parse/type errors."
+      },
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Final run passed: xo && ava && tsd; ava reported 3 tests passed."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Final npm test exited with code 0.",
+        "Only package.json changed, adding tsd compilerOptions.types = [] to avoid ambient @types/node loading."
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "Configuration-only change.",
+        "No runtime files, tests, dependencies, or lock files changed.",
+        "Full requested verification passed."
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 71859,
+    "output_tokens": 1071,
+    "total_tokens": 72930,
+    "tool_calls": 1,
+    "duration_seconds": 168.2008552
+  }
+}

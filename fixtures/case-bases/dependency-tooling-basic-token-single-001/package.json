@@ -1,0 +1,12 @@
+{
+  "name": "dependency-tooling-basic",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/check-dependency-config.js && node --test"
+  },
+  "devDependencies": {
+    "@mvp/local-runner": "file:./vendor/missing-runner"
+  }
+}

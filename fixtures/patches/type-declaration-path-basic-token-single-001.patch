@@ -1,0 +1,13 @@
+diff --git a/package.json b/package.json
+index 21e9ef7..391e395 100644
+--- a/package.json
++++ b/package.json
+@@ -3,7 +3,7 @@
+   "version": "1.0.0",
+   "private": true,
+   "type": "module",
+-  "types": "./dist/index.d.ts",
++  "types": "./index.d.ts",
+   "scripts": {
+     "test": "node scripts/check-types-entry.js && node --test"
+   }

@@ -1,0 +1,8 @@
+{
+  "model": "gpt-5.5",
+  "input_tokens": 10000,
+  "output_tokens": 2000,
+  "total_tokens": 12000,
+  "tool_calls": 12,
+  "duration_seconds": 180.5
+}

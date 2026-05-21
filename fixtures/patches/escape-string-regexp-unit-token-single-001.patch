@@ -1,0 +1,11 @@
+diff --git a/index.js b/index.js
+index d63aa0c..9ce9323 100644
+--- a/index.js
++++ b/index.js
+@@ -7,5 +7,5 @@ export default function escapeStringRegexp(string) {
+ 	// Use a simple backslash escape when it’s always valid, and a `\xnn` escape when the simpler form would be disallowed by Unicode patterns’ stricter grammar.
+ 	return string
+ 		.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+-		.replace(/-/g, '-');
++		.replace(/-/g, '\\x2d');
+ }

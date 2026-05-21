@@ -1,0 +1,9 @@
+diff --git a/index.js b/index.js
+index fa7283c..19a3a64 100644
+--- a/index.js
++++ b/index.js
+@@ -1,3 +1,3 @@
+ export function normalizeName(value) {
+-  return value.toLowerCase();
++  return value.trim().toLowerCase();
+ }

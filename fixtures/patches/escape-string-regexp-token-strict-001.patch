@@ -1,0 +1,16 @@
+diff --git a/package.json b/package.json
+index 168e9a6..0053488 100644
+--- a/package.json
++++ b/package.json
+@@ -20,6 +20,11 @@
+ 	"scripts": {
+ 		"test": "xo && ava && tsd"
+ 	},
++	"tsd": {
++		"compilerOptions": {
++			"types": []
++		}
++	},
+ 	"files": [
+ 		"index.js",
+ 		"index.d.ts"

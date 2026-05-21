@@ -1,0 +1,8 @@
+{
+  "name": "dependency-script-basic",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/missing-package-check.js && node --test"
+  }
+}

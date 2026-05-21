@@ -1,0 +1,44 @@
+{
+  "run_id": "flaky-cache-warm-basic-token-single-001",
+  "repo": "flaky-cache-warm-basic",
+  "task": "让 npm test 通过；如果初次失败明确是瞬态 flaky 信号，可以复跑验证，但不要修改运行时代码、测试或依赖。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Initial run failed with explicit transient signal: \"cache-warm: dependency cache still warming, retry npm test\". Retried within the same shell call and passed: ok 1, # pass 1, # fail 0."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Final npm test exit code was 0 after allowed flaky retry.",
+        "Final git status was clean.",
+        "Final tracked diff was empty."
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "No runtime, test, dependency, or lockfile changes were made.",
+        "Failure matched the allowed transient cache-warm flaky pattern and retry passed."
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 71298,
+    "output_tokens": 825,
+    "total_tokens": 72123,
+    "tool_calls": 1,
+    "duration_seconds": 143.8063906
+  }
+}

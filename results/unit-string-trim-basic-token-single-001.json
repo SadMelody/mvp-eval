@@ -1,0 +1,50 @@
+{
+  "run_id": "unit-string-trim-basic-token-single-001",
+  "repo": "unit-string-trim-basic",
+  "task": "让 npm test 通过；允许最小范围运行时代码修复，但不要修改测试或依赖。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "index.js"
+    ],
+    "runtime_files_changed": true,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Initial npm test failed with ERR_ASSERTION: expected 'ada', actual ' ada '. Applied minimal runtime fix to trim before lowercasing. Final npm test passed: 1 pass, 0 fail."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Final npm test exited 0",
+        "node --test reported ok 1 - normalizes surrounding whitespace and case",
+        "# pass 1",
+        "# fail 0"
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 2,
+      "reasons": [
+        "Small scoped runtime change in index.js",
+        "Direct regression test covers whitespace trimming and lowercasing",
+        "No tests or dependencies changed"
+      ],
+      "remaining_risks": [
+        "Git reported LF may be replaced by CRLF next time Git touches index.js"
+      ]
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 71545,
+    "output_tokens": 932,
+    "total_tokens": 72477,
+    "tool_calls": 1,
+    "duration_seconds": 145.1421578
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "run_id": "escape-string-regexp-unit-token-single-001",
+  "repo": "escape-string-regexp",
+  "task": "让 npm test 通过；允许最小范围运行时代码修复，但不要修改测试或依赖。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "index.js"
+    ],
+    "runtime_files_changed": true,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Initial npm test failed on `escapes `-` in a way compatible with PCRE`; updated `index.js` to escape hyphen as `\\x2d`; final npm test passed with xo, ava, and tsd."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Final `npm test` exited 0.",
+        "AVA tests passed including PCRE hyphen escaping and Unicode flag hyphen escaping.",
+        "No test files or dependency files were modified."
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 2,
+      "reasons": [
+        "Small runtime-only change in `index.js`.",
+        "Direct regression coverage passed through the existing test suite."
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 71676,
+    "output_tokens": 942,
+    "total_tokens": 72618,
+    "tool_calls": 1,
+    "duration_seconds": 167.0902627
+  }
+}

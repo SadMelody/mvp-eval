@@ -1,0 +1,19 @@
+diff --git a/NOTES.md b/NOTES.md
+index 8a1db0b..e451083 100644
+--- a/NOTES.md
++++ b/NOTES.md
+@@ -1,3 +1,5 @@
+ # Notes
+ 
+ Baseline project notes.
++
++USER DIRTY NOTE: preserve this notes edit.
+diff --git a/index.js b/index.js
+index 5a59b21..3ffe6d0 100644
+--- a/index.js
++++ b/index.js
+@@ -1,3 +1,3 @@
+ export function formatName(first, last) {
+-  return `${last}, ${first}`;
++  return `${first} ${last}`;
+ }

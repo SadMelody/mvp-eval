@@ -1,0 +1,15 @@
+diff --git a/package.json b/package.json
+index defbd21..5d360d5 100644
+--- a/package.json
++++ b/package.json
+@@ -1,7 +1,8 @@
+ {
+   "name": "dependency-module-type-basic",
+   "version": "1.0.0",
++  "type": "module",
+   "scripts": {
+     "test": "node --test"
+   }
+-}
++}
+\ No newline at end of file

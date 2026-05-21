@@ -1,0 +1,38 @@
+# Local environment
+.env
+.env.*
+*.local
+
+# Dependency folders and package-manager noise
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Raw Agent/Codex run artifacts
+runs/
+prompts/
+.omx/
+fixtures/**/.git/
+
+# Generated verification and report exports
+verification-*.json
+mvp-evidence*.json
+coverage-gaps.json
+token-stability.json
+MVP_READINESS.md
+COVERAGE_GAPS.md
+TOKEN_STABILITY.md
+TOKEN_SUMMARY.md
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

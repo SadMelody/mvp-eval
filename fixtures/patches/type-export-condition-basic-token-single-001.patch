@@ -1,0 +1,13 @@
+diff --git a/package.json b/package.json
+index 690e3ff..61dd0cb 100644
+--- a/package.json
++++ b/package.json
+@@ -5,7 +5,7 @@
+   "type": "module",
+   "exports": {
+     ".": {
+-      "types": "./missing.d.ts",
++      "types": "./index.d.ts",
+       "import": "./index.js"
+     }
+   },

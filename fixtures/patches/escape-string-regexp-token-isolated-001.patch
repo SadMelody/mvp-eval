@@ -1,0 +1,15 @@
+diff --git a/package.json b/package.json
+index 168e9a6..6915b9f 100644
+--- a/package.json
++++ b/package.json
+@@ -38,5 +38,10 @@
+ 		"ava": "^3.15.0",
+ 		"tsd": "^0.14.0",
+ 		"xo": "^0.38.2"
++	},
++	"tsd": {
++		"compilerOptions": {
++			"types": []
++		}
+ 	}
+ }

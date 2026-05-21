@@ -1,0 +1,78 @@
+{
+  "run_id": "escape-string-regexp-token-aware-001",
+  "repo": "escape-string-regexp",
+  "task": "在不改变运行时行为的前提下，让 npm test 通过。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "package.json"
+    ],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "rg --files -g '!node_modules'; Get-Content package.json; git status --short",
+        "status": "passed",
+        "summary": "Inspected project files, package scripts, and clean initial git status."
+      },
+      {
+        "command": "npx xo",
+        "status": "passed",
+        "summary": "Lint passed."
+      },
+      {
+        "command": "npx ava",
+        "status": "passed",
+        "summary": "3 AVA tests passed."
+      },
+      {
+        "command": "npm test",
+        "status": "failed",
+        "summary": "Failed in tsd due ambient @types/node 25 declarations being loaded by TypeScript 4.1 bundled with tsd 0.14."
+      },
+      {
+        "command": "npx tsd",
+        "status": "passed",
+        "summary": "Passed after scoping tsd compilerOptions.types to an empty list."
+      },
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "xo, ava, and tsd passed; 3 AVA tests passed."
+      },
+      {
+        "command": "git diff -- package.json; git status --short",
+        "status": "passed",
+        "summary": "Only package.json changed."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "npm test completed successfully.",
+        "Runtime source files were not changed.",
+        "Test files were not changed.",
+        "Only tsd configuration was changed to avoid loading unrelated ambient @types packages."
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "Configuration-only change in package.json.",
+        "No runtime behavior change.",
+        "Full test script passed."
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 432793,
+    "output_tokens": 2942,
+    "total_tokens": 435735,
+    "tool_calls": 13,
+    "duration_seconds": 268.822136
+  }
+}

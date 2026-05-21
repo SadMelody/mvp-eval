@@ -1,0 +1,53 @@
+{
+  "run_id": "is-plain-obj-unit-token-001",
+  "repo": "is-plain-obj",
+  "task": "让 npm test 通过；允许最小范围运行时代码修复，但不要修改测试或依赖。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "index.js"
+    ],
+    "runtime_files_changed": true,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "failed",
+        "summary": "Initial full test failed in AVA: Object.create(null) path threw TypeError from Object.getPrototypeOf(null)."
+      },
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Final full test passed: xo, ava, and tsd completed; AVA reported 1 test passed."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Read project files, package scripts, test setup, and git status before editing.",
+        "Full npm test executed before fix and reproduced the failure.",
+        "Full npm test executed after fix and passed.",
+        "Git diff limited to index.js with 1 insertion and 1 deletion."
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 2,
+      "reasons": [
+        "Small runtime guard fix for null-prototype objects.",
+        "No tests, dependencies, or lock files changed.",
+        "Full validation passed through the package test script."
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 260716,
+    "output_tokens": 2312,
+    "total_tokens": 263028,
+    "tool_calls": 5,
+    "duration_seconds": 251.226565
+  }
+}

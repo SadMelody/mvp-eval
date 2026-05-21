@@ -1,0 +1,5 @@
+{"type":"item.completed","item":{"type":"tool_call","name":"shell_command"}}
+{"type":"item.completed","item":{"type":"message","role":"assistant"}}
+not-json
+{"type":"turn.completed","usage":{"input_tokens":111,"output_tokens":22,"cached_input_tokens":10,"reasoning_output_tokens":3}}
+{"type":"item.completed","item":{"type":"function_call","name":"apply_patch"}}

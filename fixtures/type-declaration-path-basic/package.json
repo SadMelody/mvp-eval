@@ -1,0 +1,10 @@
+{
+  "name": "type-declaration-path-basic",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "node scripts/check-types-entry.js && node --test"
+  }
+}

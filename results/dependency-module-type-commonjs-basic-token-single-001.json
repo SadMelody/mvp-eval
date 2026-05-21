@@ -1,0 +1,44 @@
+{
+  "run_id": "dependency-module-type-commonjs-basic-token-single-001",
+  "repo": "dependency-module-type-commonjs-basic",
+  "task": "让 npm test 通过；只允许最小范围 package/tooling 配置修复，不要修改运行时代码、测试或依赖锁文件。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "package.json"
+    ],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": true,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Initial test failed with SyntaxError: Cannot use import statement outside a module. Updated package.json type from commonjs to module. Final npm test passed: ok 1 - doubles values; # pass 1; # fail 0."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "npm test exited 0",
+        "Node test runner reported # pass 1 and # fail 0"
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "Minimal package/tooling configuration change only: package.json type changed from commonjs to module."
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 71636,
+    "output_tokens": 970,
+    "total_tokens": 72606,
+    "tool_calls": 1,
+    "duration_seconds": 209.3381289
+  }
+}

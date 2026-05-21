@@ -1,0 +1,12 @@
+diff --git a/package.json b/package.json
+index d22d6ba..ddb69ff 100644
+--- a/package.json
++++ b/package.json
+@@ -7,6 +7,6 @@
+     "test": "node scripts/check-dependency-config.js && node --test"
+   },
+   "devDependencies": {
+-    "@mvp/local-runner": "file:./vendor/missing-runner"
++    "@mvp/local-runner": "file:./vendor/mvp-local-runner"
+   }
+ }

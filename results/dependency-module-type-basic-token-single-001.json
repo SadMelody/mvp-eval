@@ -1,0 +1,44 @@
+{
+  "run_id": "dependency-module-type-basic-token-single-001",
+  "repo": "dependency-module-type-basic",
+  "task": "让 npm test 通过；只允许最小范围 package/tooling 配置修复，不要修改运行时代码、测试或依赖锁文件。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "package.json"
+    ],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": true,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Initial npm test failed with SyntaxError: Cannot use import statement outside a module. Added package.json type=module. Final npm test passed: ok 1 - doubles values; # pass 1; # fail 0."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Final npm test exited 0",
+        "node --test reported 1 passing test and 0 failures"
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "Minimal package tooling change only: added type=module to package.json"
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 71407,
+    "output_tokens": 909,
+    "total_tokens": 72316,
+    "tool_calls": 1,
+    "duration_seconds": 141.009146
+  }
+}

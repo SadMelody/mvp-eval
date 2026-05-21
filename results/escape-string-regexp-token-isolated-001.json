@@ -1,0 +1,57 @@
+{
+  "run_id": "escape-string-regexp-token-isolated-001",
+  "repo": "escape-string-regexp",
+  "task": "在不改变运行时行为的前提下，让 npm test 通过。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "package.json"
+    ],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "Read project structure, package scripts, test config, and git status",
+        "status": "passed",
+        "summary": "Inspected files, package.json test script, tsd/tsconfig presence, and clean initial git status."
+      },
+      {
+        "command": "npm test",
+        "status": "failed",
+        "summary": "Full test failed during tsd because old TypeScript parsed unrelated ambient @types/node declarations."
+      },
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "xo, ava, and tsd completed; 3 ava tests passed."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Full npm test passed after tsd configuration fix.",
+        "Only package.json changed.",
+        "No runtime, test, or dependency files changed."
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "Only tsd configuration was changed to avoid loading unrelated ambient @types packages.",
+        "Runtime behavior is unchanged.",
+        "Complete npm test verification passed."
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 273351,
+    "output_tokens": 2505,
+    "total_tokens": 275856,
+    "tool_calls": 5,
+    "duration_seconds": 253.4785611
+  }
+}

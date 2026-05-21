@@ -1,0 +1,5 @@
+* text=auto eol=lf
+
+fixtures/case-bases/** -text
+fixtures/final-overlays/** -text
+fixtures/patches/*.patch binary

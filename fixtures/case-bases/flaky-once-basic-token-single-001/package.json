@@ -1,0 +1,9 @@
+{
+  "name": "flaky-once-basic",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/flaky-once.js && node --test"
+  }
+}

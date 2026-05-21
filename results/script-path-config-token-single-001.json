@@ -1,0 +1,46 @@
+{
+  "run_id": "script-path-config-token-single-001",
+  "repo": "script-path-config",
+  "task": "在不改变运行时行为的前提下，让 npm test 通过。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "package.json"
+    ],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Initial npm test failed because the script targeted tests/*.test.js, which did not exist. Updated package.json test script to node --test test/basic.test.js. Final npm test passed: 1 pass, 0 fail."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Final npm test exited 0",
+        "node --test test/basic.test.js reported ok 1 - slugifies spaces, # pass 1, # fail 0"
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "Only package.json test script configuration changed",
+        "No runtime code, tests, or dependency lock files changed",
+        "Full requested verification passed"
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 71494,
+    "output_tokens": 930,
+    "total_tokens": 72424,
+    "tool_calls": 1,
+    "duration_seconds": 145.6057008
+  }
+}

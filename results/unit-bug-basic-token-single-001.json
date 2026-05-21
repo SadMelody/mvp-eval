@@ -1,0 +1,48 @@
+{
+  "run_id": "unit-bug-basic-token-single-001",
+  "repo": "unit-bug-basic",
+  "task": "让 npm test 通过；允许最小范围运行时代码修复，但不要修改测试或依赖。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "index.js"
+    ],
+    "runtime_files_changed": true,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Initial npm test failed: adds two numbers expected 5 but actual was -1. Fixed add implementation in index.js from subtraction to addition. Final npm test passed: 1 pass, 0 fail."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Final npm test exited 0",
+        "node --test reported ok 1 - adds two numbers",
+        "# pass 1",
+        "# fail 0"
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 2,
+      "reasons": [
+        "Small runtime-only fix in index.js",
+        "Direct test coverage passed",
+        "No test or dependency files changed"
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 71282,
+    "output_tokens": 842,
+    "total_tokens": 72124,
+    "tool_calls": 1,
+    "duration_seconds": 252.202052
+  }
+}

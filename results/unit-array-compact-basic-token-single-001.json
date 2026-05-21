@@ -1,0 +1,45 @@
+{
+  "run_id": "unit-array-compact-basic-token-single-001",
+  "repo": "unit-array-compact-basic",
+  "task": "让 npm test 通过；允许最小范围运行时代码修复，但不要修改测试或依赖。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "index.js"
+    ],
+    "runtime_files_changed": true,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Initial npm test failed: removes only nullish entries. Runtime fix changed compact() to filter nullish values. Final npm test passed: 1 pass, 0 fail."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Final npm test exited 0.",
+        "node --test reported ok 1 - removes only nullish entries, # pass 1, # fail 0."
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 2,
+      "reasons": [
+        "Small runtime-only change in index.js.",
+        "Direct unit test covers the fixed compact behavior."
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 71535,
+    "output_tokens": 902,
+    "total_tokens": 72437,
+    "tool_calls": 1,
+    "duration_seconds": 140.8141699
+  }
+}

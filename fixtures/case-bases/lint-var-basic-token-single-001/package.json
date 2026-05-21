@@ -1,0 +1,8 @@
+{
+  "name": "lint-var-basic",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/lint.js && node --test"
+  }
+}

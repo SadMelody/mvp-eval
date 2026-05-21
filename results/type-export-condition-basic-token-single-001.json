@@ -1,0 +1,47 @@
+{
+  "run_id": "type-export-condition-basic-token-single-001",
+  "repo": "type-export-condition-basic",
+  "task": "在不改变运行时行为的前提下，让 npm test 通过。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "package.json"
+    ],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Initial npm test failed because exports.types pointed to missing declaration file ./missing.d.ts. Updated package.json exports.types to ./index.d.ts. Final npm test passed: ok 1 - returns the answer; # pass 1; # fail 0."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Final npm test exited with code 0.",
+        "Declaration export check passed after package.json types path update.",
+        "Node test suite passed: 1 passing, 0 failing."
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "Only package declaration tooling configuration changed.",
+        "No runtime source, tests, dependencies, or lock files changed.",
+        "Full requested verification passed."
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 71711,
+    "output_tokens": 1069,
+    "total_tokens": 72780,
+    "tool_calls": 1,
+    "duration_seconds": 143.0708247
+  }
+}

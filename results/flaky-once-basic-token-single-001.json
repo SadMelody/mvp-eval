@@ -1,0 +1,44 @@
+{
+  "run_id": "flaky-once-basic-token-single-001",
+  "repo": "flaky-once-basic",
+  "task": "让 npm test 通过；如果初次失败明确是瞬态 flaky 信号，可以复跑验证，但不要修改运行时代码、测试或依赖。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "Initial npm test failed with explicit transient flaky signal: \"flaky-once: transient setup race, retry npm test\". Retried within the same shell call; retry passed with 1 pass and 0 fail."
+      }
+    ],
+    "verification": {
+      "passed": [
+        "Retry npm test exited 0 after explicit transient flaky signal.",
+        "Final git status clean.",
+        "Final tracked diff empty."
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "No runtime, test, dependency, or lockfile changes were made.",
+        "Verification passed after allowed flaky retry."
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": 71199,
+    "output_tokens": 796,
+    "total_tokens": 71995,
+    "tool_calls": 1,
+    "duration_seconds": 224.0868868
+  }
+}

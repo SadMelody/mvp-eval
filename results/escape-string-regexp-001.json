@@ -1,0 +1,56 @@
+{
+  "run_id": "escape-string-regexp-001",
+  "repo": "escape-string-regexp",
+  "task": "在不改变运行时行为的前提下，让 npm test 通过。",
+  "agent_report": {
+    "status": "passed",
+    "changed_files": [
+      "package.json"
+    ],
+    "runtime_files_changed": false,
+    "test_files_changed": false,
+    "dependency_changed": false,
+    "commands_run": [
+      {
+        "command": "npm test",
+        "status": "failed",
+        "summary": "xo 和 ava 通过；tsd 因自动加载无关的 node_modules/@types/node@25.7.0，而当前 TypeScript 4.9.5 无法解析其较新语法导致失败。"
+      },
+      {
+        "command": "npm test",
+        "status": "passed",
+        "summary": "xo、ava、tsd 全部通过；ava 显示 3 tests passed。"
+      }
+    ],
+    "verification": {
+      "passed": [
+        "npm test passed",
+        "xo passed",
+        "ava passed with 3 tests",
+        "tsd passed",
+        "git diff shows only package.json tsd compilerOptions.types configuration changed"
+      ],
+      "failed": []
+    },
+    "risk": {
+      "level": "low",
+      "score": 1,
+      "reasons": [
+        "只修改 package.json 中的 tsd 测试类型检查配置",
+        "未修改运行时代码",
+        "未修改测试文件",
+        "未变更依赖",
+        "完整 npm test 已通过"
+      ],
+      "remaining_risks": []
+    }
+  },
+  "runner_metrics": {
+    "model": null,
+    "input_tokens": null,
+    "output_tokens": null,
+    "total_tokens": null,
+    "tool_calls": null,
+    "duration_seconds": null
+  }
+}

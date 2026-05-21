@@ -1,0 +1,19 @@
+name: MVP token suite
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    name: Verify MVP token evaluation
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run low-cost MVP token suite
+        shell: pwsh
+        run: .\scripts\verify-mvp-token-suite.ps1

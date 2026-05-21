@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["run_id", "repo", "task", "agent_report", "runner_metrics"],
+  "additionalProperties": false,
+  "properties": {
+    "run_id": {"type": "string"},
+    "repo": {"type": "string"},
+    "task": {"type": "string"},
+    "agent_report": {
+      "type": "object",
+      "required": [
+        "status",
+        "changed_files",
+        "runtime_files_changed",
+        "test_files_changed",
+        "dependency_changed",
+        "commands_run",
+        "verification",
+        "risk"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {"type": "string", "enum": ["passed", "failed", "blocked", "partial"]},
+        "changed_files": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "runtime_files_changed": {"type": "boolean"},
+        "test_files_changed": {"type": "boolean"},
+        "dependency_changed": {"type": "boolean"},
+        "commands_run": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["command", "status", "summary"],
+            "additionalProperties": false,
+            "properties": {
+              "command": {"type": "string"},
+              "status": {"type": "string", "enum": ["passed", "failed"]},
+              "summary": {"type": "string"}
+            }
+          }
+        },
+        "verification": {
+          "type": "object",
+          "required": ["passed", "failed"],
+          "additionalProperties": false,
+          "properties": {
+            "passed": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "failed": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          }
+        },
+        "risk": {
+          "type": "object",
+          "required": ["level", "score", "reasons", "remaining_risks"],
+          "additionalProperties": false,
+          "properties": {
+            "level": {"type": "string", "enum": ["low", "medium", "high"]},
+            "score": {"type": "integer"},
+            "reasons": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "remaining_risks": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "runner_metrics": {
+      "type": "object",
+      "required": [
+        "model",
+        "input_tokens",
+        "output_tokens",
+        "total_tokens",
+        "tool_calls",
+        "duration_seconds"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "model": {"type": ["string", "null"]},
+        "input_tokens": {"type": ["integer", "null"]},
+        "output_tokens": {"type": ["integer", "null"]},
+        "total_tokens": {"type": ["integer", "null"]},
+        "tool_calls": {"type": ["integer", "null"]},
+        "duration_seconds": {"type": ["number", "null"]}
+      }
+    }
+  }
+}
