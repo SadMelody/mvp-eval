@@ -1,5 +1,7 @@
 # MVP Token Evaluation
 
+[![MVP token suite](https://github.com/SadMelody/mvp-eval/actions/workflows/mvp-token-suite.yml/badge.svg)](https://github.com/SadMelody/mvp-eval/actions/workflows/mvp-token-suite.yml)
+
 This folder defines a lightweight benchmark loop for measuring Agent token cost on npm repair tasks.
 
 The main MVP question is token behavior:
