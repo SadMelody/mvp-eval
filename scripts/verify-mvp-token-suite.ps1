@@ -111,6 +111,11 @@ $commands = @(
     parameters = @{}
   },
   [pscustomobject]@{
+    name = "live_benchmark_plan_self_test"
+    script = Join-Path $PSScriptRoot "test-run-live-benchmark-plan.ps1"
+    parameters = @{}
+  },
+  [pscustomobject]@{
     name = "refresh_token_summary"
     script = Join-Path $PSScriptRoot "refresh-token-summary.ps1"
     parameters = @{}
@@ -173,6 +178,8 @@ $syntaxFiles = @(
   "test-validate-run-negative.ps1",
   "test-validator-schema-alignment.ps1",
   "test-extract-runner-metrics.ps1",
+  "run-live-benchmark.ps1",
+  "test-run-live-benchmark-plan.ps1",
   "validate-all-results.ps1",
   "check-mvp-pass-bar.ps1",
   "analyze-token-anomalies.ps1",

@@ -1,6 +1,7 @@
 param(
   [string]$CasesPath = ".\cases.json",
   [string]$Scope = "mvp",
+  [string[]]$RunId,
   [switch]$Force,
   [switch]$InstallDependencies
 )
@@ -110,6 +111,10 @@ foreach ($case in $cases) {
     continue
   }
 
+  if ($RunId -and [string]$case.id -notin $RunId) {
+    continue
+  }
+
   if ([string]::IsNullOrWhiteSpace([string]$case.path) -or [string]$case.path -like "<*") {
     continue
   }
@@ -192,6 +197,7 @@ $status = if ($failed.Count -eq 0) { "passed" } else { "failed" }
 [pscustomobject]@{
   status = $status
   scope = $Scope
+  run_ids = @($RunId)
   prepared = @($prepared | Where-Object { $_.status -eq "prepared" }).Count
   skipped = @($prepared | Where-Object { $_.status -eq "skipped" }).Count
   failed = $failed

@@ -52,7 +52,7 @@ foreach ($tool in @("git", "node", "npm")) {
 }
 
 $codexSummary = Get-CommandSummary -Name "codex"
-Add-Check -Checks $checks -Name "codex_optional" -Required $false -Passed ($null -ne $codexSummary) -Summary $(if ($codexSummary) { $codexSummary } else { "optional; required only for live Agent smoke runs" })
+Add-Check -Checks $checks -Name "codex_optional" -Required $false -Passed ($null -ne $codexSummary) -Summary $(if ($codexSummary) { $codexSummary } else { "optional; required only for live Agent benchmark or smoke runs" })
 
 foreach ($path in @(
   "cases.json",
@@ -60,6 +60,7 @@ foreach ($path in @(
   "fixtures",
   "results",
   "scripts\verify-mvp-token-suite.ps1",
+  "scripts\run-live-benchmark.ps1",
   ".github\workflows\mvp-token-suite.yml"
 )) {
   $fullPath = Join-Path $resolvedRoot $path

@@ -22,7 +22,7 @@ Requirements:
 - PowerShell 5.1+ or PowerShell 7+
 - Git
 - Node.js and npm
-- Codex CLI only when running live Agent smoke tests
+- Codex CLI only when running live Agent benchmark or smoke tests
 
 After cloning the repository, run the no-token environment check:
 
@@ -60,6 +60,27 @@ For the common single-case path, use `run-codex-case.ps1` with `-Validate` and `
   -Validate `
   -RefreshSummary
 ```
+
+For a repeated live token benchmark, preview the selected work without spending tokens:
+
+```powershell
+.\scripts\run-live-benchmark.ps1 `
+  -RunId unit-bug-basic-token-single-001 `
+  -Repeat 3 `
+  -PlanOnly
+```
+
+Execute the previewed benchmark only when accepting live token spend:
+
+```powershell
+.\scripts\run-live-benchmark.ps1 `
+  -RunId unit-bug-basic-token-single-001 `
+  -Repeat 3 `
+  -Model <model> `
+  -ConfirmTokenSpend
+```
+
+The live benchmark resets only the selected fixture before each run, extracts real metrics from Codex events, validates each result, and stores isolated output under `live-runs/<timestamp>/` with `manifest.json` and `summary.json`. It never updates canonical `results/` or the README token snapshot. Use `-RepeatGroup <name>` for existing grouped samples; batches above ten runs require `-AllowLargeBatch`.
 
 For a real end-to-end smoke test that uses a temporary fixture clone and keeps smoke output out of the canonical `results/` folder:
 
@@ -197,9 +218,9 @@ To run the current MVP token verification suite end to end:
 .\scripts\verify-mvp-token-suite.ps1
 ```
 
-This runs the negative validator self-test, schema alignment self-test, runner metrics extraction self-test, README summary refresh, result scope audit, coverage gap audit, scoped report validation, pass-bar check, anomaly analysis, repeat-group stability export, and PowerShell syntax checks. It defaults to `-Scope mvp`; `-Scope all` intentionally includes legacy exploratory runs that may exceed current MVP token budgets.
+This runs the negative validator self-test, schema alignment self-test, runner metrics extraction self-test, live benchmark plan/safety-gate self-test, README summary refresh, result scope audit, coverage gap audit, scoped report validation, pass-bar check, anomaly analysis, repeat-group stability export, and PowerShell syntax checks. It defaults to `-Scope mvp`; `-Scope all` intentionally includes legacy exploratory runs that may exceed current MVP token budgets.
 
-The GitHub Actions workflow at `.github/workflows/mvp-token-suite.yml` runs this same low-cost suite on push, pull request, and manual dispatch. It does not run `-IncludeSmoke`.
+The GitHub Actions workflow at `.github/workflows/mvp-token-suite.yml` runs this same low-cost suite on push, pull request, and manual dispatch. It does not run `-IncludeSmoke`, `-IncludeRealRepoSmoke`, or live benchmark execution.
 
 To include the real Codex Agent smoke test in the same verification entry point:
 
