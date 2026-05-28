@@ -70,9 +70,59 @@ function Get-TokenStats {
   }
 }
 
+function Get-CaseTemplatePath {
+  param(
+    [object]$Case,
+    [string]$Root,
+    [string]$DefaultTemplatePath,
+    [bool]$TemplateExplicit
+  )
+
+  if ($TemplateExplicit) {
+    return $DefaultTemplatePath
+  }
+
+  $templateByRepo = @{
+    "arrify" = "agent-task-template.single-tool.arrify.md"
+    "dependency-module-type-basic" = "agent-task-template.single-tool.dependency-module-type.md"
+    "dependency-module-type-commonjs-basic" = "agent-task-template.single-tool.dependency-module-type.md"
+    "dependency-script-basic" = "agent-task-template.single-tool.dependency-script.md"
+    "dependency-tooling-basic" = "agent-task-template.single-tool.dependency-basic.md"
+    "dirty-notes-basic" = "agent-task-template.single-tool.dirty-notes.md"
+    "dirty-same-file-basic" = "agent-task-template.single-tool.dirty-same-file.md"
+    "dirty-worktree-basic" = "agent-task-template.single-tool.dirty-worktree-basic.md"
+    "escape-string-regexp" = "agent-task-template.single-tool.escape-string-regexp.md"
+    "flaky-cache-warm-basic" = "agent-task-template.single-tool.flaky-transient.md"
+    "flaky-once-basic" = "agent-task-template.single-tool.flaky-once-basic.md"
+    "flaky-port-basic" = "agent-task-template.single-tool.flaky-transient.md"
+    "is-plain-obj" = "agent-task-template.single-tool.is-plain-obj.md"
+    "lint-basic" = "agent-task-template.single-tool.lint-basic.md"
+    "lint-quote-basic" = "agent-task-template.single-tool.lint-quote.md"
+    "lint-var-basic" = "agent-task-template.single-tool.lint-var.md"
+    "script-glob-config" = "agent-task-template.single-tool.node-script.md"
+    "script-path-config" = "agent-task-template.single-tool.node-script.md"
+    "script-spec-config" = "agent-task-template.single-tool.node-script.md"
+    "type-declaration-path-basic" = "agent-task-template.single-tool.type-declaration.md"
+    "unit-array-compact-basic" = "agent-task-template.single-tool.unit-runtime.md"
+    "unit-bug-basic" = "agent-task-template.single-tool.unit-basic.md"
+    "unit-string-trim-basic" = "agent-task-template.single-tool.unit-runtime.md"
+  }
+
+  $repo = [string]$Case.repo
+  if ($templateByRepo.ContainsKey($repo)) {
+    $candidate = Join-Path $Root $templateByRepo[$repo]
+    if (Test-Path -LiteralPath $candidate) {
+      return (Resolve-Path -LiteralPath $candidate).Path
+    }
+  }
+
+  return $DefaultTemplatePath
+}
+
 $root = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
 $resolvedCases = Resolve-Path -LiteralPath (Resolve-ProjectPath -Path $CasesPath -Root $root)
 $resolvedTemplate = Resolve-Path -LiteralPath (Resolve-ProjectPath -Path $TemplatePath -Root $root)
+$templateExplicit = $PSBoundParameters.ContainsKey("TemplatePath")
 $cases = @(Get-Content -Raw -LiteralPath $resolvedCases | ConvertFrom-Json)
 
 $selectors = @(
@@ -129,6 +179,7 @@ $selection = @(
       repo = [string]$_.repo
       category = [string]$_.category
       repeat_group = if ($_.repeat_group) { [string]$_.repeat_group } else { $null }
+      template_path = Get-CaseTemplatePath -Case $_ -Root $root -DefaultTemplatePath $resolvedTemplate.Path -TemplateExplicit $templateExplicit
     }
   }
 )
@@ -174,6 +225,7 @@ $hasFailure = $false
         Scope = $Scope
         RunId = @($caseId)
         Force = $true
+        SkipExpectedPatch = $true
       }
       if (-not $SkipDependencyInstall) {
         $prepareParameters.InstallDependencies = $true
@@ -187,7 +239,7 @@ $hasFailure = $false
       $runParameters = @{
         CasesPath = $resolvedCases.Path
         RunId = $caseId
-        TemplatePath = $resolvedTemplate.Path
+        TemplatePath = Get-CaseTemplatePath -Case $case -Root $root -DefaultTemplatePath $resolvedTemplate.Path -TemplateExplicit $templateExplicit
         OutputRoot = $caseOutputRoot
         Validate = $true
       }

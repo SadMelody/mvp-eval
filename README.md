@@ -80,7 +80,7 @@ Execute the previewed benchmark only when accepting live token spend:
   -ConfirmTokenSpend
 ```
 
-The live benchmark resets only the selected fixture before each run, extracts real metrics from Codex events, validates each result, and stores isolated output under `live-runs/<timestamp>/` with `manifest.json` and `summary.json`. It never updates canonical `results/` or the README token snapshot. Use `-RepeatGroup <name>` for existing grouped samples; batches above ten runs require `-AllowLargeBatch`.
+The live benchmark resets only the selected fixture before each run, starts from the clean unsolved baseline instead of applying the expected-answer patch, auto-selects a case-specific single-tool prompt when one exists, extracts real metrics from Codex events, validates each result, and stores isolated output under `live-runs/<timestamp>/` with `manifest.json` and `summary.json`. It never updates canonical `results/` or the README token snapshot. Use `-RepeatGroup <name>` for existing grouped samples; batches above ten runs require `-AllowLargeBatch`.
 
 For a real end-to-end smoke test that uses a temporary fixture clone and keeps smoke output out of the canonical `results/` folder:
 

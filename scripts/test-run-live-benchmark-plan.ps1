@@ -28,9 +28,30 @@ try {
 
   Assert-Condition ($singlePlan.status -eq "passed" -and $singlePlan.mode -eq "plan") "Single-case plan did not report plan success."
   Assert-Condition ($singlePlan.planned_runs -eq 3 -and $singlePlan.selection.Count -eq 1) "Single-case plan selected the wrong runs."
+  Assert-Condition ([string]$singlePlan.selection[0].template_path -like "*agent-task-template.single-tool.unit-basic.md") "Single-case plan did not select the unit-basic template."
   Assert-Condition (-not $singlePlan.token_spend_required) "Plan-only mode must not require token spend."
   Assert-Condition (-not (Test-Path -LiteralPath $tempRoot)) "Plan-only mode created output files."
   $checks.Add("single_case_plan") | Out-Null
+
+  $prepareJson = (& (Join-Path $PSScriptRoot "prepare-case-repos.ps1") `
+    -CasesPath (Join-Path $root "cases.json") `
+    -RunId "unit-bug-basic-token-single-001" `
+    -Force `
+    -SkipExpectedPatch | Out-String).Trim() | ConvertFrom-Json
+  $preparedRepo = [string]$prepareJson.results[0].path
+  $status = (& git -C $preparedRepo status --short | Out-String).Trim()
+  Push-Location $preparedRepo
+  try {
+    npm test *> $null
+    $testExit = $LASTEXITCODE
+  } finally {
+    Pop-Location
+  }
+
+  Assert-Condition ($prepareJson.prepared -eq 1 -and $prepareJson.results[0].reason -eq "base_without_expected_patch") "SkipExpectedPatch did not prepare the unsolved baseline."
+  Assert-Condition ([string]::IsNullOrWhiteSpace($status)) "SkipExpectedPatch baseline should start with a clean git status."
+  Assert-Condition ($testExit -ne 0) "SkipExpectedPatch baseline should start with failing npm test."
+  $checks.Add("live_unsolved_baseline") | Out-Null
 
   $repeatPlan = (& $scriptPath `
     -CasesPath (Join-Path $root "cases.json") `
@@ -77,6 +98,11 @@ try {
     token_spending_run_executed = $false
   } | ConvertTo-Json -Depth 5
 } finally {
+  & (Join-Path $PSScriptRoot "prepare-case-repos.ps1") `
+    -CasesPath (Join-Path $root "cases.json") `
+    -RunId "unit-bug-basic-token-single-001" `
+    -Force | Out-Null
+
   if (Test-Path -LiteralPath $tempRoot) {
     Remove-Item -LiteralPath $tempRoot -Recurse -Force
   }

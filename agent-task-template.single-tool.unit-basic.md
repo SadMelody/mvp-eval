@@ -59,10 +59,20 @@ Show-TestSummary $finalLog
 Write-Output "initial_exit=$initialCode final_exit=$finalCode changed=$changed"
 Write-Output '--- final git status ---'
 git status --short
+Write-Output '--- final changed files ---'
+git diff --name-only
 Write-Output '--- final runtime diff ---'
 git diff -- index.js
 exit $finalCode
 ```
+
+最终 JSON 前必须用上面 `--- final changed files ---` 的输出做自检：
+- `changed_files` 必须逐项列出最终 `git diff --name-only` 里的文件；如果输出包含 `index.js`，必须写 `"changed_files": ["index.js"]`。
+- `runtime_files_changed` 必须与最终 diff 一致；如果 `index.js` 变化，必须是 `true`。
+- `test_files_changed` 只有测试目录或测试文件变化时才是 `true`；本任务不应修改测试。
+- `dependency_changed` 只有 `package.json`、lockfile 或依赖配置变化时才是 `true`。
+- 如果最终 `npm test` 通过且只做了小范围 `index.js` 运行时修复，`risk.score` 必须是 `2`、`risk.level` 必须是 `"low"`。
+- 不要在最终 git status/diff 显示文件变化时报告“未修改文件”。
 
 固定输出 schema：
 ```json

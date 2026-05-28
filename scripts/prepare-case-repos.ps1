@@ -3,6 +3,7 @@ param(
   [string]$Scope = "mvp",
   [string[]]$RunId,
   [switch]$Force,
+  [switch]$SkipExpectedPatch,
   [switch]$InstallDependencies
 )
 
@@ -165,7 +166,7 @@ foreach ($case in $cases) {
   Invoke-Git -RepoPath $targetRepo -Arguments @("-c", "user.name=MVP Eval", "-c", "user.email=mvp-eval@example.invalid", "commit", "-m", "Fixture baseline", "-q")
 
   $patchApplied = $false
-  if (Test-Path -LiteralPath $patchPath) {
+  if (-not $SkipExpectedPatch -and (Test-Path -LiteralPath $patchPath)) {
     $patch = Get-Item -LiteralPath $patchPath
     if ($patch.Length -gt 0) {
       Invoke-Git -RepoPath $targetRepo -Arguments @("apply", "--binary", "--ignore-whitespace", $patchPath)
@@ -185,7 +186,7 @@ foreach ($case in $cases) {
   $prepared.Add([pscustomobject]@{
     run_id = [string]$case.id
     status = "prepared"
-    reason = if ($patchApplied) { "base_plus_patch" } else { "base_only" }
+    reason = if ($patchApplied) { "base_plus_patch" } elseif ($SkipExpectedPatch) { "base_without_expected_patch" } else { "base_only" }
     path = $targetRepo
     dependency_status = if ($InstallDependencies) { Install-NpmDependencies -RepoPath $targetRepo } else { "not_requested" }
   }) | Out-Null
